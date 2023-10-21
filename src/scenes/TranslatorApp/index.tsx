@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
-import { AUTO_LENGUAGE, Language, useTranslate } from './useTranslate'
-import { Col, Container, Row } from 'react-bootstrap'
+import { AUTO_LENGUAGE, useTranslate } from './useTranslate'
+import { Button, Col, Container, Row } from 'react-bootstrap'
+import { SwapArrowsIcon } from '../../components/SwapArrowsIcon'
 
 const TranslatorApp: React.FC = () => {
   const {
@@ -27,11 +28,12 @@ const TranslatorApp: React.FC = () => {
           </Col>
 
           <Col>
-            <button
+            <Button
               disabled={state.fromLanguage === AUTO_LENGUAGE}
-              onClick={interchangeLanguage}>
-              intercambiar
-            </button>
+              onClick={interchangeLanguage}
+              variant="link">
+              <SwapArrowsIcon />
+            </Button>
           </Col>
 
           <Col>
