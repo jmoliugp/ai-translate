@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 
-enum Language {
+export enum Language {
   Auto = 'auto',
   English = 'en',
   Spanish = 'es',
