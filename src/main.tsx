@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import TranslatorApp from './TranslatorApp.tsx'
+import TranslatorApp from './TranslatorApp'
 import './index.css'
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

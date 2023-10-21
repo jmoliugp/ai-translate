@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './TranslatorApp.css'
+import './styles.css'
 import { Language, useTranslate } from './useTranslate'
 
 const TranslatorApp: React.FC = () => {
