@@ -1,12 +1,5 @@
 import { useReducer } from 'react'
-
-export enum Language {
-  English = 'en',
-  Spanish = 'es',
-  German = 'de',
-}
-export const AUTO_LENGUAGE = 'auto'
-type AutoLenguage = typeof AUTO_LENGUAGE
+import { AUTO_LENGUAGE, AutoLenguage, Language } from '../../utils/constants'
 
 export type FromLanguage = Language | AutoLenguage
 export type ToLanguage = Language
@@ -104,7 +97,7 @@ export const useTranslate = () => {
       type: TranslatorAction.SetToLanguage,
       payload: language,
     })
-  const setFromLanguage = (language: Language) =>
+  const setFromLanguage = (language: FromLanguage) =>
     dispatch({
       type: TranslatorAction.SetFromLanguage,
       payload: language,
