@@ -1,8 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
-import { AUTO_LENGUAGE, useTranslate } from './useTranslate'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { useTranslate } from './useTranslate'
+import { Button, Col, Container, Row, Stack } from 'react-bootstrap'
 import { SwapArrowsIcon } from '../../components/SwapArrowsIcon'
+import { AUTO_LENGUAGE, SectionType } from '../../utils/constants'
+import { LanguageSelector } from '../../components/LanguageSelector'
+import { TextArea } from '../../components/TextArea'
 
 const TranslatorApp: React.FC = () => {
   const {
@@ -14,8 +17,6 @@ const TranslatorApp: React.FC = () => {
     state,
   } = useTranslate()
 
-  console.log({ state })
-
   return (
     <Container fluid>
       <div className="App">
@@ -23,11 +24,22 @@ const TranslatorApp: React.FC = () => {
 
         <Row>
           <Col>
-            <h2>From</h2>
-            {state.fromLanguage}
+            <Stack gap={2}>
+              <LanguageSelector
+                changeLanguage={setFromLanguage}
+                key={'input'}
+                selectedLanguage={state.fromLanguage}
+                type={SectionType.From}
+              />
+              <TextArea
+                value={state.fromText}
+                onChange={setFromText}
+                type={SectionType.From}
+              />
+            </Stack>
           </Col>
 
-          <Col>
+          <Col xs="auto">
             <Button
               disabled={state.fromLanguage === AUTO_LENGUAGE}
               onClick={interchangeLanguage}
@@ -36,9 +48,21 @@ const TranslatorApp: React.FC = () => {
             </Button>
           </Col>
 
-          <Col>
-            <h2>To</h2>
-            {state.toLanguage}
+          <Col xs="auto">
+            <Stack gap={2}>
+              <LanguageSelector
+                changeLanguage={setToLanguage}
+                key={'output'}
+                selectedLanguage={state.toLanguage}
+                type={SectionType.To}
+              />
+              <TextArea
+                value={state.result}
+                onChange={setResult}
+                type={SectionType.To}
+                loading={state.loading}
+              />
+            </Stack>
           </Col>
         </Row>
       </div>
