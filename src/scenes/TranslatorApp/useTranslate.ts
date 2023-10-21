@@ -1,12 +1,12 @@
 import { useReducer } from 'react'
 
 export enum Language {
-  Auto = 'auto',
   English = 'en',
   Spanish = 'es',
   German = 'de',
 }
-type AutoLenguage = 'auto'
+export const AUTO_LENGUAGE = 'auto'
+type AutoLenguage = typeof AUTO_LENGUAGE
 
 export type FromLanguage = Language | AutoLenguage
 export type ToLanguage = Language
@@ -35,7 +35,7 @@ type Action =
   | { type: TranslatorAction.SetResult; payload: string }
 
 const initialState: State = {
-  fromLanguage: Language.Auto,
+  fromLanguage: AUTO_LENGUAGE,
   toLanguage: Language.English,
   fromText: '',
   result: '',

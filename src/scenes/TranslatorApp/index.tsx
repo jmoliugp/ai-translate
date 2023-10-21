@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
-import { Language, useTranslate } from './useTranslate'
+import { AUTO_LENGUAGE, Language, useTranslate } from './useTranslate'
 import { Col, Container, Row } from 'react-bootstrap'
 
 const TranslatorApp: React.FC = () => {
@@ -27,7 +27,11 @@ const TranslatorApp: React.FC = () => {
           </Col>
 
           <Col>
-            <button onClick={interchangeLanguage}>intercambiar</button>
+            <button
+              disabled={state.fromLanguage === AUTO_LENGUAGE}
+              onClick={interchangeLanguage}>
+              intercambiar
+            </button>
           </Col>
 
           <Col>
