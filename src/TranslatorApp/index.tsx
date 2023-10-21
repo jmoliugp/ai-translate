@@ -1,19 +1,42 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
 import { Language, useTranslate } from './useTranslate'
+import { Col, Container, Row } from 'react-bootstrap'
 
 const TranslatorApp: React.FC = () => {
-  const { setFromLanguage, state } = useTranslate()
+  const {
+    interchangeLanguage,
+    setFromLanguage,
+    setFromText,
+    setResult,
+    setToLanguage,
+    state,
+  } = useTranslate()
 
   console.log({ state })
 
   return (
-    <div className="App">
-      <h1>AI Translate</h1>
-      <button onClick={() => setFromLanguage(Language.Spanish)}>
-        Cambiar a Español
-      </button>
-    </div>
+    <Container fluid>
+      <div className="App">
+        <h1>AI Translate</h1>
+
+        <Row>
+          <Col>
+            <h2>From</h2>
+            {state.fromLanguage}
+          </Col>
+
+          <Col>
+            <button onClick={interchangeLanguage}>intercambiar</button>
+          </Col>
+
+          <Col>
+            <h2>To</h2>
+            {state.toLanguage}
+          </Col>
+        </Row>
+      </div>
+    </Container>
   )
 }
 
