@@ -7,7 +7,6 @@ export enum Language {
   German = 'de',
 }
 type AutoLenguage = 'auto'
-const defaultLaguage = Language.English
 
 export type FromLanguage = Language | AutoLenguage
 export type ToLanguage = Language
@@ -47,14 +46,12 @@ function reducer(state: State, action: Action): State {
   const { type } = action
 
   if (type === TranslatorAction.InterchangeLanguage) {
-    const fromLanguage = state.toLanguage
-    const toLanguage =
-      state.fromLanguage === 'auto' ? defaultLaguage : state.fromLanguage
+    if (state.fromLanguage === 'auto') return { ...state }
 
     return {
       ...state,
-      fromLanguage,
-      toLanguage,
+      fromLanguage: state.toLanguage,
+      toLanguage: state.fromLanguage,
     }
   }
 
