@@ -2,17 +2,10 @@ import { Form } from 'react-bootstrap'
 import { AUTO_LENGUAGE, Language, SectionType } from '../../utils/constants'
 import { FromLanguage } from '../../scenes/TranslatorApp/useTranslate'
 
+// prettier-ignore
 type Props =
-  | {
-      type: SectionType.From
-      selectedLanguage: FromLanguage
-      changeLanguage: (language: FromLanguage) => void
-    }
-  | {
-      type: SectionType.To
-      selectedLanguage: Language
-      changeLanguage: (language: Language) => void
-    }
+  | { type: SectionType.From, selectedLanguage: FromLanguage, changeLanguage: (language: FromLanguage) => void }
+  | { type: SectionType.To, selectedLanguage: Language, changeLanguage: (language: Language) => void }
 
 export const LanguageSelector: React.FC<Props> = ({
   type,
