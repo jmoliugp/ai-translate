@@ -6,16 +6,12 @@ import { SwapArrowsIcon } from '../../components/SwapArrowsIcon'
 import { AUTO_LENGUAGE, SectionType } from '../../utils/constants'
 import { LanguageSelector } from '../../components/LanguageSelector'
 import { TextArea } from '../../components/TextArea'
+import { useEffect } from 'react'
 
 const TranslatorApp: React.FC = () => {
-  const {
-    interchangeLanguage,
-    setFromLanguage,
-    setFromText,
-    setResult,
-    setToLanguage,
-    state,
-  } = useTranslate()
+  const { handlers, state } = useTranslate()
+
+  useEffect(() => {}, [state.fromText])
 
   return (
     <Container fluid>
@@ -26,14 +22,14 @@ const TranslatorApp: React.FC = () => {
           <Col>
             <Stack gap={2}>
               <LanguageSelector
-                changeLanguage={setFromLanguage}
+                changeLanguage={handlers.setFromLanguage}
                 key={'input'}
                 selectedLanguage={state.fromLanguage}
                 type={SectionType.From}
               />
               <TextArea
                 value={state.fromText}
-                onChange={setFromText}
+                onChange={handlers.setFromText}
                 type={SectionType.From}
               />
             </Stack>
@@ -42,7 +38,7 @@ const TranslatorApp: React.FC = () => {
           <Col xs="auto">
             <Button
               disabled={state.fromLanguage === AUTO_LENGUAGE}
-              onClick={interchangeLanguage}
+              onClick={handlers.interchangeLanguage}
               variant="link">
               <SwapArrowsIcon />
             </Button>
@@ -51,14 +47,14 @@ const TranslatorApp: React.FC = () => {
           <Col xs="auto">
             <Stack gap={2}>
               <LanguageSelector
-                changeLanguage={setToLanguage}
+                changeLanguage={handlers.setToLanguage}
                 key={'output'}
                 selectedLanguage={state.toLanguage}
                 type={SectionType.To}
               />
               <TextArea
                 value={state.result}
-                onChange={setResult}
+                onChange={handlers.setResult}
                 type={SectionType.To}
                 loading={state.loading}
               />

@@ -88,37 +88,35 @@ export const useTranslate = () => {
     initialState,
   )
 
-  const interchangeLanguage = () =>
-    dispatch({
-      type: TranslatorAction.InterchangeLanguage,
-    })
-  const setToLanguage = (language: Language) =>
-    dispatch({
-      type: TranslatorAction.SetToLanguage,
-      payload: language,
-    })
-  const setFromLanguage = (language: FromLanguage) =>
-    dispatch({
-      type: TranslatorAction.SetFromLanguage,
-      payload: language,
-    })
-  const setFromText = (fromText: string) =>
-    dispatch({
-      type: TranslatorAction.SetFromText,
-      payload: fromText,
-    })
-  const setResult = (text: string) =>
-    dispatch({
-      type: TranslatorAction.SetResult,
-      payload: text,
-    })
+  const handlers = {
+    interchangeLanguage: () =>
+      dispatch({
+        type: TranslatorAction.InterchangeLanguage,
+      }),
+    setToLanguage: (language: Language) =>
+      dispatch({
+        type: TranslatorAction.SetToLanguage,
+        payload: language,
+      }),
+    setFromLanguage: (language: FromLanguage) =>
+      dispatch({
+        type: TranslatorAction.SetFromLanguage,
+        payload: language,
+      }),
+    setFromText: (fromText: string) =>
+      dispatch({
+        type: TranslatorAction.SetFromText,
+        payload: fromText,
+      }),
+    setResult: (text: string) =>
+      dispatch({
+        type: TranslatorAction.SetResult,
+        payload: text,
+      }),
+  }
 
   return {
-    interchangeLanguage,
-    setFromLanguage,
-    setFromText,
-    setResult,
-    setToLanguage,
+    handlers,
     state,
   }
 }
