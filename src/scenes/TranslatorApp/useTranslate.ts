@@ -49,16 +49,28 @@ function reducer(state: State, action: Action): State {
   }
 
   if (type === TranslatorAction.SetFromLanguage) {
+    if (state.fromLanguage === action.payload) return state
+
+    const loading = state.fromText === ''
+
     return {
       ...state,
+      loading,
       fromLanguage: action.payload,
+      result: '',
     }
   }
 
   if (type === TranslatorAction.SetToLanguage) {
+    if (state.toLanguage === action.payload) return state
+
+    const loading = state.fromText === ''
+
     return {
       ...state,
+      loading,
       toLanguage: action.payload,
+      result: '',
     }
   }
 
