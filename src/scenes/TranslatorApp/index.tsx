@@ -6,16 +6,33 @@ import { SwapArrowsIcon } from '../../components/SwapArrowsIcon'
 import { AUTO_LENGUAGE, SectionType } from '../../utils/constants'
 import { LanguageSelector } from '../../components/LanguageSelector'
 import { TextArea } from '../../components/TextArea'
+import { useEffect } from 'react'
+import { translate } from '../../utils/translate'
+import { useDebounce } from './useDebounce'
 
 const TranslatorApp: React.FC = () => {
-  const {
-    interchangeLanguage,
-    setFromLanguage,
-    setFromText,
-    setResult,
-    setToLanguage,
-    state,
-  } = useTranslate()
+  const { handlers, state } = useTranslate()
+
+  const debouncedFromText = useDebounce(state.fromText)
+
+  useEffect(() => {
+    if (debouncedFromText === '') return
+
+    translate({
+      fromLanguage: state.fromLanguage,
+      text: debouncedFromText,
+      toLanguage: state.toLanguage,
+    })
+      .then(res => {
+        if (!res) return
+
+        handlers.setResult(res)
+      })
+      .catch(error => {
+        console.error('## error: ', JSON.stringify(error))
+        console.error('AI_API_TRANSLATION_ERROR')
+      })
+  }, [debouncedFromText, state.fromLanguage, state.toLanguage])
 
   return (
     <Container fluid>
@@ -26,14 +43,14 @@ const TranslatorApp: React.FC = () => {
           <Col>
             <Stack gap={2}>
               <LanguageSelector
-                changeLanguage={setFromLanguage}
+                changeLanguage={handlers.setFromLanguage}
                 key={'input'}
                 selectedLanguage={state.fromLanguage}
                 type={SectionType.From}
               />
               <TextArea
                 value={state.fromText}
-                onChange={setFromText}
+                onChange={handlers.setFromText}
                 type={SectionType.From}
               />
             </Stack>
@@ -42,7 +59,7 @@ const TranslatorApp: React.FC = () => {
           <Col xs="auto">
             <Button
               disabled={state.fromLanguage === AUTO_LENGUAGE}
-              onClick={interchangeLanguage}
+              onClick={handlers.interchangeLanguage}
               variant="link">
               <SwapArrowsIcon />
             </Button>
@@ -51,14 +68,14 @@ const TranslatorApp: React.FC = () => {
           <Col xs="auto">
             <Stack gap={2}>
               <LanguageSelector
-                changeLanguage={setToLanguage}
+                changeLanguage={handlers.setToLanguage}
                 key={'output'}
                 selectedLanguage={state.toLanguage}
                 type={SectionType.To}
               />
               <TextArea
                 value={state.result}
-                onChange={setResult}
+                onChange={handlers.setResult}
                 type={SectionType.To}
                 loading={state.loading}
               />
