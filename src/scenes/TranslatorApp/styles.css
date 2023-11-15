@@ -3,3 +3,9 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
+.result-buttons-container {
+  left: 0;
+  bottom: 0;
+  display: "flex";
+}
