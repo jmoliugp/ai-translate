@@ -4,7 +4,7 @@ import {
   OpenAIApi,
 } from 'openai'
 import { FromLanguage } from '../scenes/TranslatorApp/useTranslate'
-import { AUTO_LENGUAGE, Language } from './constants'
+import { AUTO_LENGUAGE, Language } from './language'
 
 const OPEN_AI_API_KEY = 'XXXXXXXX'
 
