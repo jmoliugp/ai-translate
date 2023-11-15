@@ -1,5 +1,5 @@
 import { Form } from 'react-bootstrap'
-import { SectionType } from '../utils/constants'
+import { SectionType } from '../utils/language'
 
 // prettier-ignore
 type Props =

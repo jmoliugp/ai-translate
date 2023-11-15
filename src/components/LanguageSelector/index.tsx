@@ -1,5 +1,5 @@
 import { Form } from 'react-bootstrap'
-import { AUTO_LENGUAGE, Language, SectionType } from '../../utils/constants'
+import { AUTO_LENGUAGE, Language, SectionType } from '../../utils/language'
 import { FromLanguage } from '../../scenes/TranslatorApp/useTranslate'
 
 // prettier-ignore
