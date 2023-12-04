@@ -63,8 +63,3 @@ yarn test
 - [React Bootstrap](https://react-bootstrap.github.io/) - UI framework 🎨
 - [OpenAI API](https://openai.com/api/) - AI-powered language translation 🤖
 - [Vitest](https://vitest.dev/) - Testing framework 🔍
-
-## 🎉 Acknowledgments
-
-- [Midudev](https://midu.dev/)
-- [OpenAI](https://openai.com/)
